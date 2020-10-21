@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Landing = () => {
+const UrlField = () => {
   return (
     <div style={{ textAlign: 'center' }}>
       <h1>
@@ -11,4 +11,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default UrlField;
