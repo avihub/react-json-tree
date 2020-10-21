@@ -50,35 +50,35 @@ const createJsonTree = json => {
         )
     };
 
-    const createObjectNode = (parentNode, jsonNode) => {
-        const objNode = document.createElement("span");
-        objNode.classList.add("object");
-        const openBracket = document.createElement("span");
-        openBracket.innerText = "{";
-        const closeBracket = document.createElement("span");
-        closeBracket.innerText = "}";
-        const objContentDiv = document.createElement("span");
-
+    const createObjectNode = (jsonNode) => {
         const childKeys = Object.keys(jsonNode);
         const lastProp = childKeys.length - 1;
-        childKeys.forEach((n, i) => {
-            const prop = document.createElement("div");
-            prop.classList.add("prop");
-            const propNameSpan = document.createElement("span");
-            propNameSpan.innerText = `${n}: `;
-            prop.appendChild(propNameSpan);
-            createNode(prop, jsonNode[n]);
-            if (i < lastProp) {
-                prop.appendChild(document.createTextNode(","));
-            }
-            objContentDiv.appendChild(prop);
-        });
 
-        objNode.appendChild(openBracket);
-        objNode.appendChild(createToogle(objContentDiv));
-        objNode.appendChild(objContentDiv);
-        objNode.appendChild(closeBracket);
-        parentNode.appendChild(objNode);
+        const addComma = i => (
+            i < lastProp ? ',' : null
+        );
+
+        return (
+            <span className='object'>
+                <span>
+                    {'{'}
+                </span>
+                <span>
+                    {childKeys.map((n, i) => (
+                        <div className='prop'>
+                            <span>
+                                {`"${n}": `}
+                                {createNode(jsonNode[n])}
+                                {addComma(i)}
+                            </span>
+                        </div>
+                    ))}
+                </span>
+                <span>
+                    {'}'}
+                </span>
+            </span>
+        )
     };
 
     const createArrayNode = (parentNode, jsonNode) => {
@@ -108,15 +108,17 @@ const createJsonTree = json => {
         parentNode.appendChild(arrayNode);
     };
 
-    const createNode = (parentNode, jsonNode) => {
+    const createNode = (jsonNode) => {
+        console.log('createNode input', jsonNode);
+        console.log('typeof createNode input', typeof jsonNode);
         let node;
         if (typeof jsonNode === "object") {
             if (Array.isArray(jsonNode)) {
-                createArrayNode(parentNode, jsonNode);
+                // createArrayNode(parentNode, jsonNode);
             } else if (jsonNode === null) {
                 node = createLeafNode(jsonNode);
             } else {
-                createObjectNode(parentNode, jsonNode);
+                node = createObjectNode(jsonNode);
             }
         } else {
             node = createLeafNode(jsonNode);
@@ -125,10 +127,10 @@ const createJsonTree = json => {
         return node;
     };
 
-    const jsonTree = {};
+    // const jsonTree = {};
     return (
         <div className='json-tree'>
-            {createNode(jsonTree, json)}
+            {createNode(json)}
         </div>
     );
 };
@@ -140,7 +142,7 @@ function JsonTree() {
                 JsonTree
             </h1>
 
-            {createJsonTree(false)}
+            {createJsonTree({ a: 34, c: "asdk", z: 34.22 })}
 
 
         </div>
