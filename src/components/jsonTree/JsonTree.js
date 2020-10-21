@@ -1,20 +1,6 @@
 import React from 'react';
 import TreeNode from './TreeNode';
 
-const style = document.createElement("style");
-style.innerHTML = `
-.prop {
-  margin-left: 20px;
-}
-.toggle {
-  color: blue;
-  padding: 0px 3px;
-  margin: 0px 2px;
-  font-weight: bolder;
-}
-`;
-document.head.appendChild(style);
-
 const createToogle = (toggledEl) => {
     const toggle = document.createElement("span");
     toggle.classList.add("toggle");
@@ -35,7 +21,7 @@ const createToogle = (toggledEl) => {
 
 function JsonTree() {
     return (
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'left' }}>
             <h1>
                 JsonTree
             </h1>
