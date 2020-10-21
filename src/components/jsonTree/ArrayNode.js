@@ -1,18 +1,20 @@
 import React from 'react';
 import TreeNode from './TreeNode';
+import Collapsable from './Collapsable';
 
-function ArrayNode({jsonNode}) {
+function ArrayNode({ jsonNode }) {
     const lastProp = jsonNode.length - 1;
 
-        const addComma = i => (
-            i < lastProp ? ',' : null
-        );
+    const addComma = i => (
+        i < lastProp ? ',' : null
+    );
 
-        return (
-            <span className='array'>
-                <span>
-                    {'['}
-                </span>
+    return (
+        <span className='array'>
+            <span>
+                {'['}
+            </span>
+            <Collapsable>
                 <span>
                     {jsonNode.map((n, i) => (
                         <div key={i} className='prop'>
@@ -23,11 +25,12 @@ function ArrayNode({jsonNode}) {
                         </div>
                     ))}
                 </span>
-                <span>
-                    {']'}
-                </span>
+            </Collapsable>
+            <span>
+                {']'}
             </span>
-        )
+        </span>
+    )
 };
 
 export default ArrayNode;
