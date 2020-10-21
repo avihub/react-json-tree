@@ -36,6 +36,9 @@ function UrlField() {
 
     return (
         <div className='url-field'>
+            <h1>
+                Json viewer
+            </h1>
             <input type="url" name="url" id="url" placeholder="https://example.com"></input>
             <div id="json-view"></div>
         </div>
