@@ -1,24 +1,6 @@
 import React from 'react';
 import TreeNode from './TreeNode';
 
-const createToogle = (toggledEl) => {
-    const toggle = document.createElement("span");
-    toggle.classList.add("toggle");
-    toggle.innerText = "-";
-    toggle.isOpen = true;
-    toggle.addEventListener("click", () => {
-        if (toggle.isOpen) {
-            toggledEl.style.display = "none";
-            toggle.innerText = "+";
-        } else {
-            toggledEl.style.display = "";
-            toggle.innerText = "-";
-        }
-        toggle.isOpen = !toggle.isOpen;
-    });
-    return toggle;
-};
-
 function JsonTree() {
     return (
         <div style={{ textAlign: 'left' }}>
