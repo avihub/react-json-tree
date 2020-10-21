@@ -65,7 +65,7 @@ const createJsonTree = json => {
                 </span>
                 <span>
                     {childKeys.map((n, i) => (
-                        <div className='prop'>
+                        <div key={i} className='prop'>
                             <span>
                                 {`"${n}": `}
                                 {createNode(jsonNode[n])}
@@ -81,40 +81,42 @@ const createJsonTree = json => {
         )
     };
 
-    const createArrayNode = (parentNode, jsonNode) => {
-        const arrayNode = document.createElement("span");
-        arrayNode.classList.add("array");
-        const openBracket = document.createElement("span");
-        openBracket.innerText = "[";
-        const closeBracket = document.createElement("span");
-        closeBracket.innerText = "]";
-        const arrayContentDiv = document.createElement("span");
-
+    const createArrayNode = (jsonNode) => {
         const lastProp = jsonNode.length - 1;
-        jsonNode.forEach((n, i) => {
-            const prop = document.createElement("div");
-            prop.classList.add("prop");
-            createNode(prop, n);
-            if (i < lastProp) {
-                prop.appendChild(document.createTextNode(","));
-            }
-            arrayContentDiv.appendChild(prop);
-        });
 
-        arrayNode.appendChild(openBracket);
-        arrayNode.appendChild(createToogle(arrayContentDiv));
-        arrayNode.appendChild(arrayContentDiv);
-        arrayNode.appendChild(closeBracket);
-        parentNode.appendChild(arrayNode);
+        const addComma = i => (
+            i < lastProp ? ',' : null
+        );
+
+        return (
+            <span className='array'>
+                <span>
+                    {'['}
+                </span>
+                <span>
+                    {jsonNode.map((n, i) => (
+                        <div key={i} className='prop'>
+                            <span>
+                                {createNode(n)}
+                                {addComma(i)}
+                            </span>
+                        </div>
+                    ))}
+                </span>
+                <span>
+                    {']'}
+                </span>
+            </span>
+        )
     };
 
     const createNode = (jsonNode) => {
-        console.log('createNode input', jsonNode);
-        console.log('typeof createNode input', typeof jsonNode);
+        // console.log('createNode input', jsonNode);
+        // console.log('typeof createNode input', typeof jsonNode);
         let node;
         if (typeof jsonNode === "object") {
             if (Array.isArray(jsonNode)) {
-                // createArrayNode(parentNode, jsonNode);
+                node = createArrayNode(jsonNode);
             } else if (jsonNode === null) {
                 node = createLeafNode(jsonNode);
             } else {
@@ -127,7 +129,6 @@ const createJsonTree = json => {
         return node;
     };
 
-    // const jsonTree = {};
     return (
         <div className='json-tree'>
             {createNode(json)}
@@ -142,7 +143,7 @@ function JsonTree() {
                 JsonTree
             </h1>
 
-            {createJsonTree({ a: 34, c: "asdk", z: 34.22 })}
+            {createJsonTree({ a: 34, arr2: [1, 2, 4], c: "asdk", z: 34.22, arr: [3,33] })}
 
 
         </div>
