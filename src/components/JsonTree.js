@@ -33,19 +33,21 @@ const createJsonTree = json => {
         return toggle;
     };
 
-    const createLeafNode = (parentNode, jsonNode) => {
-        const el = document.createElement("span");
-        let text;
+    const createLeafNode = (jsonNode) => {
+        let text = '';
         if (typeof jsonNode === "string") {
             text = `"${jsonNode}"`;
         } else if (jsonNode === null) {
             text = "null";
-        } else {
-            // number OR boolean
-            text = jsonNode;
+        } else { // number OR boolean
+            text += jsonNode;
         }
-        el.innerText = text;
-        parentNode.appendChild(el);
+
+        return (
+            <span>
+                {text}
+            </span>
+        )
     };
 
     const createObjectNode = (parentNode, jsonNode) => {
@@ -107,30 +109,29 @@ const createJsonTree = json => {
     };
 
     const createNode = (parentNode, jsonNode) => {
+        let node;
         if (typeof jsonNode === "object") {
             if (Array.isArray(jsonNode)) {
                 createArrayNode(parentNode, jsonNode);
             } else if (jsonNode === null) {
-                createLeafNode(parentNode, jsonNode);
+                node = createLeafNode(jsonNode);
             } else {
                 createObjectNode(parentNode, jsonNode);
             }
         } else {
-            createLeafNode(parentNode, jsonNode);
+            node = createLeafNode(jsonNode);
         }
+
+        return node;
     };
 
-    const jsonTree = document.createElement("div");
-    jsonTree.classList.add('json-tree');
-    createNode(jsonTree, json);
-    return jsonTree;
+    const jsonTree = {};
+    return (
+        <div className='json-tree'>
+            {createNode(jsonTree, json)}
+        </div>
+    );
 };
-
-function createMarkup() {
-    // return {__html: 'First &middot; Second'};
-    console.log(createJsonTree([]));
-    return {__html: createJsonTree([])};
-  }
 
 function JsonTree() {
     return (
@@ -139,12 +140,7 @@ function JsonTree() {
                 JsonTree
             </h1>
 
-            <div dangerouslySetInnerHTML={createMarkup()} >
-            </div>
-            
-            {/* {createJsonTree([]).map(home => <div>{home.name}</div>)} */}
-
-            {/* {createJsonTree([])} */}
+            {createJsonTree(false)}
 
 
         </div>
