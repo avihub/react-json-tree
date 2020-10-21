@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import UrlField from './UrlField'
+import UrlField from './UrlField';
+import JsonTree from './JsonTree';
 
 function App() {
     return (
@@ -10,6 +11,24 @@ function App() {
                 <UrlField>
 
                 </UrlField>
+
+                <JsonTree>
+
+                </JsonTree>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                 <img src={logo} className="App-logo" alt="logo" />
