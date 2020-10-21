@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import UrlField from './UrlField';
-import JsonTree from './JsonTree';
+import JsonTree from './jsonTree/JsonTree';
 
 function App() {
     return (
