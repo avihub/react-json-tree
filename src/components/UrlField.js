@@ -35,10 +35,7 @@ function UrlField() {
     // init();
 
     return (
-        <div style={{ textAlign: 'center' }}>
-            <h1>
-                insert URL
-            </h1>
+        <div className='url-field'>
             <input type="url" name="url" id="url" placeholder="https://example.com"></input>
             <div id="json-view"></div>
         </div>

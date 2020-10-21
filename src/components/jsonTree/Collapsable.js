@@ -9,8 +9,8 @@ function Collapsable({ children }) {
 
     return (
         <span>
-            <span onClick={onClick}>
-                {isHidden ? ' +' : ' -'}
+            <span className='toggle' onClick={onClick}>
+                {isHidden ? ' + ' : ' - '}
             </span>
             <span style={{ display: isHidden ? 'none' : '' }}>
                 {children}

@@ -3,11 +3,7 @@ import TreeNode from './TreeNode';
 
 function JsonTree() {
     return (
-        <div style={{ textAlign: 'left' }}>
-            <h1>
-                JsonTree
-            </h1>
-
+        <div className='jsonTree'>
             <TreeNode jsonNode={{
                 "firstName": "John",
                 "lastName": "Smith",
