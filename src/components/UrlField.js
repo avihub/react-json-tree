@@ -1,6 +1,6 @@
 import React from 'react';
 
-function UrlField() {
+function UrlField({value, onInput}) {
 
     // const init = () => {
     //     let waitingReq = null;
@@ -39,7 +39,10 @@ function UrlField() {
             <h1>
                 Json viewer
             </h1>
-            <input type="url" name="url" id="url" placeholder="https://example.com"></input>
+            <input type="url" name="url" id="url" placeholder="https://example.com" 
+                value={value}
+                onInput={onInput}
+            />
             <div id="json-view"></div>
         </div>
     );
