@@ -3,7 +3,6 @@ import React from 'react';
 function Collapsable({ children }) {
     const [isHidden, setIsHidden] = React.useState(false)
     const onClick = (e) => {
-        e.stopPropagation();
         setIsHidden(!isHidden)
     }
 
