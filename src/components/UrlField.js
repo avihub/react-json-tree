@@ -51,4 +51,8 @@ import React from 'react';
     );
 };
 
-export default UrlField;
+function areEqual(prevProps, nextProps) {
+    return true;
+}
+
+export default React.memo(UrlField, areEqual);
