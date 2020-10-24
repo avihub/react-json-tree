@@ -1,0 +1,33 @@
+.url-field {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+input {
+    width: 80%;
+    height: 40px;
+    font-size: 20px;
+    margin: 20px;
+}
+
+.jsonTree {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.prop {
+    margin-left: 20px;
+}
+
+.toggle {
+    cursor: pointer;
+    color: blue;
+    padding: 0px 3px;
+    margin: 0px 2px;
+    font-weight: bolder;
+}
