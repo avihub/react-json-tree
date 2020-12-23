@@ -1,18 +1,11 @@
 import React from 'react';
 import LeafNode from './LeafNode';
-import ArrayNode from './ArrayNode';
-import ObjectNode from './ObjectNode';
+import SubTree from './SubTree';
 
 function TreeNode({jsonNode}) {
     let NodeType;
-    if (typeof jsonNode === "object") {
-        if (Array.isArray(jsonNode)) {
-            NodeType = ArrayNode;
-        } else if (jsonNode === null) {
-            NodeType = LeafNode;
-        } else {
-            NodeType = ObjectNode;
-        }
+    if (typeof jsonNode === "object" && jsonNode !== null) {
+        NodeType = SubTree;
     } else {
         NodeType = LeafNode;
     }

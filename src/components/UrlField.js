@@ -5,7 +5,6 @@ let waitingReq = null;
 function UrlField({ updateJsonTree }) {
     const [url, setUrl] = useState('');
 
-import React from 'react';
     function onInput(e) {
         const url = e.target.value;
         setUrl(url);
